@@ -15,7 +15,7 @@
         }
 
         // Change your email hosting in contact
-        $recipient = "dummy@email.com"; 
+        $recipient = "m.santonastaso@protonmail.com"; 
 
         // Set the email subject.
         $subject = "New contact from $name";
