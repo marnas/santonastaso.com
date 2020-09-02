@@ -747,7 +747,7 @@ body:before {
 	position: relative;
 	margin: 0 auto;
 	padding: 1em 0 1em;
-	max-width: 1000px;
+	max-width: 50%;
 	list-style: none;
 	text-align: center;
 }
