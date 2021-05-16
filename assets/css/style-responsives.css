@@ -89,6 +89,9 @@
 	#about h2 {
 		margin-top: 30px;
 	}
+	.description br{
+		display: none;
+	}
 	.facts {
 		float: left;
 	}
