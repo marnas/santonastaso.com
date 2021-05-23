@@ -6,12 +6,15 @@ jobs:
     env:
       AWS_REGION: eu-west-1
     steps:
-      - name: Set master env
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: echo "branch_name=PROD" >> $GITHUB_ENV
-      - name: Set dev env
-        if: ${{ github.ref == 'refs/heads/dev' }}
-        run: echo "branch_name=DEV" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+      
+      - name: Set environment stage
+        run: |
+          if ${{ github.ref == 'refs/heads/master' }}; then
+              echo "branch_name=PROD" >> $GITHUB_ENV
+          else
+              echo "branch_name=DEV" >> $GITHUB_ENV
+          fi
 
       - name: S3 Sync
         uses: jakejarvis/s3-sync-action@v0.5.1
