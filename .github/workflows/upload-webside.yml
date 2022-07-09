@@ -24,3 +24,4 @@ jobs:
           aws_secret_access_key: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY', env.environment)]}}
           aws_bucket: ${{ secrets[format('{0}_AWS_S3_BUCKET', env.environment)] }}
           source_dir: '.'
+          destination_dir: ''
