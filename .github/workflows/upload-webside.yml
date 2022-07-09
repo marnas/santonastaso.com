@@ -3,25 +3,23 @@ on: [push]
 jobs:
   Deployment:
     runs-on: ubuntu-latest
-    env:
-      AWS_REGION: eu-west-1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
       
       - name: Set environment stage
         run: |
           if ${{ github.ref == 'refs/heads/master' }}; then
-              echo "branch_name=PROD" >> $GITHUB_ENV
+              echo "environment=PROD" >> $GITHUB_ENV
           else
-              echo "branch_name=DEV" >> $GITHUB_ENV
+              echo "environment=DEV" >> $GITHUB_ENV
           fi
 
       - name: S3 Sync
-        uses: jakejarvis/s3-sync-action@v0.5.1
+        uses: shallwefootball/s3-upload-action@master
         with:
-          args: --acl public-read --follow-symlinks --delete --exclude '.git/*'
-        env:
-          AWS_S3_BUCKET: ${{ secrets[format('{0}_AWS_S3_BUCKET', env.branch_name)] }}
-          AWS_ACCESS_KEY_ID: ${{ secrets[format('{0}_AWS_ACCESS_KEY_ID', env.branch_name)] }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY', env.branch_name)] }}
-          AWS_REGION: ${{ env.AWS_REGION }}   # optional: defaults to us-east-1
+        #   args: --acl public-read --follow-symlinks --delete --exclude '.git/*'
+          aws_key_id: ${{ secrets[format('{0}_AWS_ACCESS_KEY_ID', env.environment)] }}
+          aws_secret_access_key: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY', env.environment)]}}
+          aws_bucket: ${{ secrets[format('{0}_AWS_S3_BUCKET', env.environment)] }}
+          source_dir: 'website'
+          destination_dir: ''
