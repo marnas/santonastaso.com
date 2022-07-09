@@ -3,8 +3,6 @@ on: [push]
 jobs:
   Deployment:
     runs-on: ubuntu-latest
-    env:
-      AWS_REGION: eu-west-1
     steps:
       - uses: actions/checkout@master
       
@@ -23,5 +21,5 @@ jobs:
           aws_key_id: ${{ secrets[format('{0}_AWS_ACCESS_KEY_ID', env.environment)] }}
           aws_secret_access_key: ${{ secrets[format('{0}_AWS_SECRET_ACCESS_KEY', env.environment)]}}
           aws_bucket: ${{ secrets[format('{0}_AWS_S3_BUCKET', env.environment)] }}
-          source_dir: '.'
+          source_dir: 'website'
           destination_dir: ''
