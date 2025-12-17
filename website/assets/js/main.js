@@ -13,10 +13,10 @@
   03. PARALLAX BACKGROUND EFFECT
   04. TEXT ROTATE
   05. HOME ARROW DOWN
-  06. SMOTH SCROLL
+  06. SMOOTH SCROLL
   07. PORTFOLIO FILTER IMAGE
   08. TESTIMONIAL SLIDER
-  09. ANIMATION EFFECT  
+  09. ANIMATION EFFECT
 */
 
 
@@ -99,10 +99,10 @@
 		setInterval(arrowBounce, 800);
 
 
-		/* 06. SMOTH SCROLL
+		/* 06. SMOOTH SCROLL
 		==================================================*/
 
-		$('a.smoth-scroll').on('click', function (e) {
+		$('a.smooth-scroll').on('click', function (e) {
 			var anchor = $(this);
 			$('html, body').stop().animate({
 				scrollTop: $(anchor.attr('href')).offset().top - 50
